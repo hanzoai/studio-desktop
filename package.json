@@ -1,8 +1,8 @@
 {
   "name": "@hanzo-studio/hanzo-studio-electron",
   "productName": "Hanzo Studio",
-  "repository": "github:comfy-org/electron",
-  "copyright": "Copyright © 2024 Comfy Org",
+  "repository": "github:hanzo-studio/studio-desktop",
+  "copyright": "Copyright © 2024 Hanzo AI",
   "version": "0.5.8",
   "homepage": "https://studio.hanzo.ai",
   "description": "The best modular GUI to run AI diffusion models.",
@@ -14,7 +14,7 @@
       "version": "1.30.6",
       "optionalBranch": ""
     },
-    "comfyUI": {
+    "hanzoStudio": {
       "version": "0.3.71",
       "optionalBranch": ""
     },
@@ -36,7 +36,7 @@
     "lint:check": "eslint --max-warnings 0 src",
     "make": "yarn run vite:compile && electron-builder build --config=builder-debug.config.ts && yarn run verify:build",
     "make:nsis": "electron-builder build --config=builder-debug.config.ts --win nsis --prepackaged ./dist/win-unpacked",
-    "make:assets": "node scripts/makeComfy.js",
+    "make:assets": "node scripts/makeStudio.js",
     "make:nvidia": "yarn run make -- --nvidia",
     "notarize": "node debug/notarize.js",
     "package": "yarn run vite:compile && todesktop build --code-sign=false --async",
@@ -99,7 +99,7 @@
   },
   "keywords": [],
   "author": {
-    "name": "Comfy Org",
+    "name": "Hanzo AI",
     "email": "support@studio.hanzo.ai"
   },
   "license": "GPL-3.0-only",
