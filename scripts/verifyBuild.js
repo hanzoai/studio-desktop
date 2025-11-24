@@ -9,15 +9,15 @@ import path from 'node:path';
  */
 const PATHS = {
   mac: {
-    base: 'dist/mac-arm64/ComfyUI.app/Contents/Resources',
-    required: ['ComfyUI', 'ComfyUI/custom_nodes/ComfyUI-Manager', 'UI', 'uv/macos/uv', 'uv/macos/uvx'],
+    base: 'dist/mac-arm64/Hanzo Studio.app/Contents/Resources',
+    required: ['Hanzo Studio', 'Hanzo Studio/custom_nodes/Hanzo Studio-Manager', 'UI', 'uv/macos/uv', 'uv/macos/uvx'],
   },
   windows: {
     base: 'dist/win-unpacked/resources',
     required: [
       // Add Windows-specific paths here
-      'ComfyUI',
-      'ComfyUI/custom_nodes/ComfyUI-Manager',
+      'Hanzo Studio',
+      'Hanzo Studio/custom_nodes/Hanzo Studio-Manager',
       'UI',
       'uv/win/uv.exe',
       'uv/win/uvx.exe',

@@ -65,7 +65,7 @@ export const test = baseTest.extend<DesktopTestOptions & DesktopTestFixtures>({
 
     // Attach logs after test
     await attachIfExists(testInfo, testEnvironment.mainLogPath);
-    await attachIfExists(testInfo, testEnvironment.comfyuiLogPath);
+    await attachIfExists(testInfo, testEnvironment.hanzo-studioLogPath);
 
     // Delete logs if present
     await testEnvironment.deleteLogsIfPresent();

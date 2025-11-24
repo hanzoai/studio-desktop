@@ -1,5 +1,5 @@
-# Legacy format with root 'comfyui' key
-comfyui:
+# Legacy format with root 'hanzo-studio' key
+hanzo-studio:
   base_path: /old/style/path
   checkpoints: /old/style/path/models/checkpoints/
   custom_nodes: /old/style/path/custom_nodes/

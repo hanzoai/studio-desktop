@@ -1,28 +1,28 @@
-# ComfyUI Desktop
+# Hanzo Studio Desktop
 
-[![codecov](https://codecov.io/github/Comfy-Org/electron/graph/badge.svg?token=S64WJWD2ZX)](https://codecov.io/github/Comfy-Org/electron)
+[![codecov](https://codecov.io/github/hanzo-studio/electron/graph/badge.svg?token=S64WJWD2ZX)](https://codecov.io/github/hanzo-studio/electron)
 ![Beta](https://img.shields.io/badge/beta-blue.svg)
 
 # USER GUIDE
 
-Please read the [user guide](https://docs.comfy.org/installation/desktop)
+Please read the [user guide](https://docs.studio.hanzo.ai/installation/desktop)
 
 # Download
 
-Windows (NVIDIA) NSIS x64: [Download](https://download.comfy.org/windows/nsis/x64)
+Windows (NVIDIA) NSIS x64: [Download](https://download.studio.hanzo.ai/windows/nsis/x64)
 
-macOS ARM: [Download](https://download.comfy.org/mac/dmg/arm64)
+macOS ARM: [Download](https://download.studio.hanzo.ai/mac/dmg/arm64)
 
 # Overview
 
-This desktop app is a packaged way to use [ComfyUI](https://github.com/comfyanonymous/ComfyUI) and comes bundled with a few things:
+This desktop app is a packaged way to use [Hanzo Studio](https://github.com/hanzoai/Hanzo Studio) and comes bundled with a few things:
 
-- Stable version of ComfyUI from [releases](https://github.com/comfyanonymous/ComfyUI/releases)
-- [ComfyUI_frontend](https://github.com/Comfy-Org/ComfyUI_frontend)
-- [ComfyUI-Manager](https://github.com/ltdrdata/ComfyUI-Manager)
+- Stable version of Hanzo Studio from [releases](https://github.com/hanzoai/Hanzo Studio/releases)
+- [studio-frontend](https://github.com/hanzo-studio/studio-frontend)
+- [Hanzo Studio-Manager](https://github.com/ltdrdata/Hanzo Studio-Manager)
 - [uv](https://github.com/astral-sh/uv)
 
-On startup, it will install all the necessary python dependencies with uv and start the ComfyUI server. The app will automatically update with stable releases of ComfyUI, ComfyUI-Manager, and the uv executable as well as some desktop specific features.
+On startup, it will install all the necessary python dependencies with uv and start the Hanzo Studio server. The app will automatically update with stable releases of Hanzo Studio, Hanzo Studio-Manager, and the uv executable as well as some desktop specific features.
 
 Developers, read on.
 
@@ -32,57 +32,57 @@ Developers, read on.
 
 The desktop application comes bundled with:
 
-- ComfyUI source code
-- ComfyUI-Manager
+- Hanzo Studio source code
+- Hanzo Studio-Manager
 - Electron, Chromium binaries, and node modules
 
 **Windows**
 
 We use the [NSIS installer](https://www.electron.build/nsis.html) for Windows and it will install files in these locations:
 
-Bundled Resources: `%APPDATA%\Local\Programs\comfyui-electron`
+Bundled Resources: `%APPDATA%\Local\Programs\hanzo-studio-electron`
 
 ![screenshot of resources directory](https://github.com/user-attachments/assets/0e1d4a9a-7b7e-4536-ad4b-9e6123873706)
 
-User files are stored here: `%APPDATA%\ComfyUI`
+User files are stored here: `%APPDATA%\Hanzo Studio`
 
-Automatic Updates: `%APPDATA%\Local\comfyui-electron-updater`
+Automatic Updates: `%APPDATA%\Local\hanzo-studio-electron-updater`
 
 **macOS**
 
 The macOS application is distributed as a [DMG](https://www.electron.build/dmg) and will install files in:
 
-`~/Library/Application Support/ComfyUI`
+`~/Library/Application Support/Hanzo Studio`
 
 The application will be dragged into `/Applications`
 
 **Linux**
 
-`~/.config/ComfyUI`
+`~/.config/Hanzo Studio`
 
-### ComfyUI
+### Hanzo Studio
 
-You will also be asked to select a location to store ComfyUI files like models, inputs, outputs, custom_nodes and saved workflows. This directory is stored in the `basePath` key of `config.json`.
+You will also be asked to select a location to store Hanzo Studio files like models, inputs, outputs, custom_nodes and saved workflows. This directory is stored in the `basePath` key of `config.json`.
 
-On Windows: `%APPDATA%\ComfyUI\config.json`
+On Windows: `%APPDATA%\Hanzo Studio\config.json`
 
-On macOS: `~/Library/Application Support/ComfyUI/config.json`
+On macOS: `~/Library/Application Support/Hanzo Studio/config.json`
 
-On Linux: `~/.config/ComfyUI/config.json`
+On Linux: `~/.config/Hanzo Studio/config.json`
 
 #### Model Paths
 
 This directory is also written as the `base_path` in `extra_models_config.yaml`. The Desktop app will look for model checkpoints here by default, but you can add additional models to the search path by editing this file.
 
-On Windows: `%APPDATA%\ComfyUI\extra_models_config.yaml`
+On Windows: `%APPDATA%\Hanzo Studio\extra_models_config.yaml`
 
-On macOS: `~/Library/Application Support/ComfyUI/extra_models_config.yaml`
+On macOS: `~/Library/Application Support/Hanzo Studio/extra_models_config.yaml`
 
-On Linux: `~/.config/ComfyUI/extra_models_config.yaml`
+On Linux: `~/.config/Hanzo Studio/extra_models_config.yaml`
 
 ### Logs
 
-We use electron-log to log everything. Electron main process logs are in `main.log`, and ComfyUI server logs are in `comfyui_<date>.log`.
+We use electron-log to log everything. Electron main process logs are in `main.log`, and Hanzo Studio server logs are in `hanzo-studio_<date>.log`.
 
 ```
 on Linux: ~/.config/{app name}/logs
@@ -162,15 +162,15 @@ This will install a usable `yarn` binary. Then, in the root directory of this re
 yarn install
 ```
 
-## ComfyUI Assets
+## Hanzo Studio Assets
 
-Before you can start the electron application, you need to download the ComfyUI source code and other things that are usually bundled with the application.
+Before you can start the electron application, you need to download the Hanzo Studio source code and other things that are usually bundled with the application.
 
-### ComfyUI and other dependencies
+### Hanzo Studio and other dependencies
 
 First, initialize the application resources by running `yarn make:assets`:
 
-This command will install ComfyUI and ComfyUI-Manager under `assets/`. The exact versions of each package is defined in `package.json`.
+This command will install Hanzo Studio and Hanzo Studio-Manager under `assets/`. The exact versions of each package is defined in `package.json`.
 
 You can then run `start` to build and launch the app. A watcher will also be started; it will automatically rebuild the app when a source file is changed:
 
@@ -198,12 +198,12 @@ You can generate the compiled requirements files by running the following comman
 
 ```powershell
 ## Nvidia Cuda requirements
-uv pip compile assets\ComfyUI\requirements.txt assets\ComfyUI\custom_nodes\ComfyUI-Manager\requirements.txt --emit-index-annotation --emit-index-url --index-strategy unsafe-best-match -o assets\requirements\windows_nvidia.compiled --override assets\override.txt `
+uv pip compile assets\Hanzo Studio\requirements.txt assets\Hanzo Studio\custom_nodes\Hanzo Studio-Manager\requirements.txt --emit-index-annotation --emit-index-url --index-strategy unsafe-best-match -o assets\requirements\windows_nvidia.compiled --override assets\override.txt `
 --index-url https://pypi.org/simple `
 --extra-index-url https://download.pytorch.org/whl/cu129
 
 ## CPU requirements
-uv pip compile assets\ComfyUI\requirements.txt assets\ComfyUI\custom_nodes\ComfyUI-Manager\requirements.txt --emit-index-annotation --emit-index-url --index-strategy unsafe-best-match -o assets\requirements\windows_cpu.compiled `
+uv pip compile assets\Hanzo Studio\requirements.txt assets\Hanzo Studio\custom_nodes\Hanzo Studio-Manager\requirements.txt --emit-index-annotation --emit-index-url --index-strategy unsafe-best-match -o assets\requirements\windows_cpu.compiled `
 --index-url https://pypi.org/simple
 ```
 
@@ -211,7 +211,7 @@ uv pip compile assets\ComfyUI\requirements.txt assets\ComfyUI\custom_nodes\Comfy
 
 ```bash
 ## macOS requirements
-uv pip compile assets/ComfyUI/requirements.txt assets/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt --emit-index-annotation --emit-index-url --index-strategy unsafe-best-match -o assets/requirements/macos.compiled --override assets/override.txt \
+uv pip compile assets/Hanzo Studio/requirements.txt assets/Hanzo Studio/custom_nodes/Hanzo Studio-Manager/requirements.txt --emit-index-annotation --emit-index-url --index-strategy unsafe-best-match -o assets/requirements/macos.compiled --override assets/override.txt \
 --index-url https://pypi.org/simple
 ```
 
@@ -310,7 +310,7 @@ yarn clean:slate
 
 ## Crash Reports & Metrics
 
-At the onboarding step, you can opt-in to send us usage metrics. This really helps us prioritize issues and focus our limited engineering time. Read our privacy policy [here](https://comfy.org/privacy).
+At the onboarding step, you can opt-in to send us usage metrics. This really helps us prioritize issues and focus our limited engineering time. Read our privacy policy [here](https://studio.hanzo.ai/privacy).
 
 You can opt-out at anytime from the settings menu and nothing will ever be sent.
 

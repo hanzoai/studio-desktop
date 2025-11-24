@@ -114,7 +114,7 @@ describe('ComfyServerConfig', () => {
   describe('generateConfigFileContent', () => {
     it('should generate valid YAML with model paths', () => {
       const testModelConfig = {
-        comfyui_desktop: {
+        hanzo-studio_desktop: {
           base_path: '/test/path',
           checkpoints: '/test/path/models/checkpoints/',
           loras: '/test/path/models/loras/',
@@ -123,8 +123,8 @@ describe('ComfyServerConfig', () => {
 
       const generatedYaml = ComfyServerConfig.generateConfigFileContent(testModelConfig);
 
-      expect(generatedYaml).toContain(`# ComfyUI extra_model_paths.yaml for ${process.platform}`);
-      expect(generatedYaml).toContain('comfyui_desktop:');
+      expect(generatedYaml).toContain(`# Hanzo Studio extra_model_paths.yaml for ${process.platform}`);
+      expect(generatedYaml).toContain('hanzo-studio_desktop:');
       expect(generatedYaml).toContain('  base_path: /test/path');
       expect(generatedYaml).toContain('  checkpoints: /test/path/models/checkpoints/');
       expect(generatedYaml).toContain('  loras: /test/path/models/loras/');
@@ -134,12 +134,12 @@ describe('ComfyServerConfig', () => {
       vi.stubGlobal('process', { platform });
       const testConfig = { test: { path: '/test' } };
       const generatedYaml = ComfyServerConfig.generateConfigFileContent(testConfig);
-      expect(generatedYaml).toContain(`# ComfyUI extra_model_paths.yaml for ${platform}`);
+      expect(generatedYaml).toContain(`# Hanzo Studio extra_model_paths.yaml for ${platform}`);
     });
 
     it('should handle empty configs', () => {
       const generatedYaml = ComfyServerConfig.generateConfigFileContent({});
-      expect(generatedYaml).toContain(`# ComfyUI extra_model_paths.yaml for ${process.platform}`);
+      expect(generatedYaml).toContain(`# Hanzo Studio extra_model_paths.yaml for ${process.platform}`);
       expect(generatedYaml.split('\n')[1]).toBe('{}');
     });
   });
@@ -218,8 +218,8 @@ describe('ComfyServerConfig', () => {
       const configContent = await ComfyServerConfig.readConfigFile(multiSectionConfigPath);
 
       expect(configContent).not.toBeNull();
-      expect(configContent!.comfyui_desktop.base_path).toBe('/primary/path');
-      expect(configContent!.comfyui_migration.base_path).toBe('/migration/path');
+      expect(configContent!.hanzo-studio_desktop.base_path).toBe('/primary/path');
+      expect(configContent!.hanzo-studio_migration.base_path).toBe('/migration/path');
     });
   });
 
@@ -299,7 +299,7 @@ describe('ComfyServerConfig', () => {
   describe('addAppBundledCustomNodesToConfig', () => {
     it('should add desktop_extensions when not present', async () => {
       const mockConfig = {
-        comfyui_desktop: { base_path: '/test/path' },
+        hanzo-studio_desktop: { base_path: '/test/path' },
       };
       vi.spyOn(ComfyServerConfig, 'readConfigFile').mockResolvedValueOnce(mockConfig);
       const writeConfigSpy = vi.spyOn(ComfyServerConfig, 'writeConfigFile').mockResolvedValueOnce(true);
@@ -312,13 +312,13 @@ describe('ComfyServerConfig', () => {
       );
       expect(writeConfigSpy).toHaveBeenCalledWith(
         ComfyServerConfig.configPath,
-        expect.stringContaining(path.normalize('/mocked/app_resources/ComfyUI/custom_nodes'))
+        expect.stringContaining(path.normalize('/mocked/app_resources/Hanzo Studio/custom_nodes'))
       );
     });
 
     it('should not modify config when desktop_extensions already exists', async () => {
       const mockConfig = {
-        comfyui_desktop: { base_path: '/test/path' },
+        hanzo-studio_desktop: { base_path: '/test/path' },
         desktop_extensions: { custom_nodes: '/existing/path' },
       };
       vi.spyOn(ComfyServerConfig, 'readConfigFile').mockResolvedValueOnce(mockConfig);
@@ -351,7 +351,7 @@ describe('ComfyServerConfig', () => {
       expect(createConfigSpy).toHaveBeenCalledWith(
         ComfyServerConfig.configPath,
         expect.objectContaining({
-          comfyui_desktop: expect.objectContaining({
+          hanzo-studio_desktop: expect.objectContaining({
             base_path: '/new/base/path',
           }),
         })
@@ -360,7 +360,7 @@ describe('ComfyServerConfig', () => {
 
     it('should update existing config file with new base path', async () => {
       const existingConfig = {
-        comfyui_desktop: {
+        hanzo-studio_desktop: {
           base_path: '/old/path',
           custom_nodes: 'custom_nodes/',
         },
@@ -377,7 +377,7 @@ describe('ComfyServerConfig', () => {
       );
     });
 
-    it('should create comfyui_desktop section if not present', async () => {
+    it('should create hanzo-studio_desktop section if not present', async () => {
       const existingConfig = {};
       vi.spyOn(ComfyServerConfig, 'readConfigFile').mockResolvedValueOnce(existingConfig);
       const writeConfigSpy = vi.spyOn(ComfyServerConfig, 'writeConfigFile').mockResolvedValueOnce(true);
@@ -387,7 +387,7 @@ describe('ComfyServerConfig', () => {
       expect(result).toBe(true);
       expect(writeConfigSpy).toHaveBeenCalledWith(
         ComfyServerConfig.configPath,
-        expect.stringContaining('comfyui_desktop:')
+        expect.stringContaining('hanzo-studio_desktop:')
       );
     });
   });

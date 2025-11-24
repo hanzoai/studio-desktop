@@ -15,7 +15,7 @@ export class CmCli implements HasTelemetry {
     private readonly virtualEnvironment: VirtualEnvironment,
     readonly telemetry: ITelemetry
   ) {
-    this.cliPath = path.join(getAppResourcesPath(), 'ComfyUI', 'custom_nodes', 'ComfyUI-Manager', 'cm-cli.py');
+    this.cliPath = path.join(getAppResourcesPath(), 'Hanzo Studio', 'custom_nodes', 'Hanzo Studio-Manager', 'cm-cli.py');
   }
 
   public async runCommandAsync(
@@ -63,11 +63,11 @@ export class CmCli implements HasTelemetry {
       await this.saveSnapshot(fromComfyDir, tmpFile.name, callbacks);
       await this.restoreSnapshot(tmpFile.name, path.join(this.virtualEnvironment.basePath, 'custom_nodes'), callbacks);
 
-      // Remove extra ComfyUI-Manager directory that was created by the migration.
-      const managerPath = path.join(this.virtualEnvironment.basePath, 'custom_nodes', 'ComfyUI-Manager');
+      // Remove extra Hanzo Studio-Manager directory that was created by the migration.
+      const managerPath = path.join(this.virtualEnvironment.basePath, 'custom_nodes', 'Hanzo Studio-Manager');
       if (await pathAccessible(managerPath)) {
         await fs.rm(managerPath, { recursive: true, force: true });
-        log.info('Removed extra ComfyUI-Manager directory:', managerPath);
+        log.info('Removed extra Hanzo Studio-Manager directory:', managerPath);
       }
     } finally {
       tmpFile?.removeCallback();
@@ -94,7 +94,7 @@ export class CmCli implements HasTelemetry {
       ['restore-snapshot', snapshotFile, '--restore-to', toComfyDir],
       callbacks,
       {
-        COMFYUI_PATH: path.join(getAppResourcesPath(), 'ComfyUI'),
+        COMFYUI_PATH: path.join(getAppResourcesPath(), 'Hanzo Studio'),
       }
     );
     log.info(output);

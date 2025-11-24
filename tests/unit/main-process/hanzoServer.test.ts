@@ -129,9 +129,9 @@ describe('paths and directories', () => {
     expect(server.userDirectoryPath).toBe(path.join(basePath, 'user'));
     expect(server.inputDirectoryPath).toBe(path.join(basePath, 'input'));
     expect(server.outputDirectoryPath).toBe(path.join(basePath, 'output'));
-    expect(server.mainScriptPath).toBe(path.join('/mocked/app_resources', 'ComfyUI', 'main.py'));
+    expect(server.mainScriptPath).toBe(path.join('/mocked/app_resources', 'Hanzo Studio', 'main.py'));
     expect(server.webRootPath).toBe(
-      path.join('/mocked/app_resources', 'ComfyUI', 'web_custom_versions', 'desktop_app')
+      path.join('/mocked/app_resources', 'Hanzo Studio', 'web_custom_versions', 'desktop_app')
     );
   });
 });
@@ -159,7 +159,7 @@ describe('coreLaunchArgs', () => {
 
 describe('start', () => {
   test('should throw error if server is already running', async ({ runningServer }) => {
-    await expect(runningServer.start()).rejects.toThrow('ComfyUI server is already running');
+    await expect(runningServer.start()).rejects.toThrow('Hanzo Studio server is already running');
   });
 
   test('should start the server successfully', async ({ server, mockVirtualEnvironment, mockProcess }) => {

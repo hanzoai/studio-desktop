@@ -1,6 +1,6 @@
 ## Windows development: Hyper-V
 
-ComfyUI desktop can be built and tested in using a Hyper-V VM. This document convers configuration of **CPU mode** only.
+Hanzo Studio desktop can be built and tested in using a Hyper-V VM. This document convers configuration of **CPU mode** only.
 
 ### Requirements
 
@@ -39,7 +39,7 @@ $InstallMedia = 'C:\Users\User\Downloads\win11.iso'
 $RootPath = 'D:\Virtual Machines'
 
 # VM config
-$VMName = 'comfyui'
+$VMName = 'hanzo-studio'
 $RAM = 16
 $HDD = 100
 $VirtualCPUs = 6
@@ -84,7 +84,7 @@ Set-VMProcessor -VMName $VMName -Count $VirtualCPUs
 Use the Hyper-V GUI to connect to the VM, or as an Administrator:
 
 ```ps1
-vmconnect.exe localhost comfyui
+vmconnect.exe localhost hanzo-studio
 ```
 
 ### Install Windows
@@ -107,7 +107,7 @@ Checkpoint-VM -Name $VMName -SnapshotName "Base VM configured and updated"
 
 - Copy & paste both files & code between the VM and host OS
 - Proceed with normal dev documentation
-- Remember to use `--cpu` when launching ComfyUI
+- Remember to use `--cpu` when launching Hanzo Studio
 - Don't forget to take checkpoints!
 - Common pitfall: avoid opening `.vhdx` files in Windows Explorer (simply opening it once can prevent a VM from starting, requiring manual repair)
 

@@ -20,7 +20,7 @@ import { createProcessCallbacks } from './createProcessCallbacks';
 import { InstallWizard } from './installWizard';
 import { Troubleshooting } from './troubleshooting';
 
-/** High-level / UI control over the installation of ComfyUI server. */
+/** High-level / UI control over the installation of Hanzo Studio server. */
 export class InstallationManager implements HasTelemetry {
   constructor(
     readonly appWindow: AppWindow,
@@ -28,7 +28,7 @@ export class InstallationManager implements HasTelemetry {
   ) {}
 
   /**
-   * Ensures that ComfyUI is installed and ready to run.
+   * Ensures that Hanzo Studio is installed and ready to run.
    *
    * First checks for an existing installation and validates it. If missing or invalid, a fresh install is started.
    * Will not resolve until the installation is valid.
@@ -113,7 +113,7 @@ export class InstallationManager implements HasTelemetry {
   }
 
   /**
-   * Install ComfyUI and return the base path.
+   * Install Hanzo Studio and return the base path.
    */
   async freshInstall(): Promise<ComfyInstallation> {
     log.info('Starting installation.');
@@ -156,7 +156,7 @@ export class InstallationManager implements HasTelemetry {
       const { response } = await this.appWindow.showMessageBox({
         type: 'info',
         title: 'Download git',
-        message: `We were unable to find git on this device.\n\nPlease download and install git before continuing with the installation of ComfyUI Desktop.`,
+        message: `We were unable to find git on this device.\n\nPlease download and install git before continuing with the installation of Hanzo Studio Desktop.`,
         buttons: ['Open git downloads page', 'Skip'],
         defaultId: 0,
         cancelId: 1,
@@ -193,7 +193,7 @@ export class InstallationManager implements HasTelemetry {
       await this.appWindow.loadPage(page);
     }
 
-    // Creates folders and initializes ComfyUI settings
+    // Creates folders and initializes Hanzo Studio settings
     appState.setInstallStage(createInstallStageInfo(InstallStage.CREATING_DIRECTORIES, { progress: 8 }));
     const installWizard = new InstallWizard(installOptions, this.telemetry);
     await installWizard.install();
@@ -262,7 +262,7 @@ export class InstallationManager implements HasTelemetry {
           type: 'error',
           title: 'Virtual Environment Creation Failed',
           message: 'Failed to create virtual environment',
-          detail: `ComfyUI Desktop was unable to set up the Python environment required to run.\n\nError details:\n${errorMessage}\n\nWould you like to view the documentation for help with this issue?`,
+          detail: `Hanzo Studio Desktop was unable to set up the Python environment required to run.\n\nError details:\n${errorMessage}\n\nWould you like to view the documentation for help with this issue?`,
           buttons: ['View Documentation', 'Exit'],
           defaultId: 0,
           cancelId: 1,
@@ -270,7 +270,7 @@ export class InstallationManager implements HasTelemetry {
 
         // Open documentation if user clicked "View Documentation"
         if (result.response === 0) {
-          await shell.openExternal('https://docs.comfy.org');
+          await shell.openExternal('https://docs.studio.hanzo.ai');
         }
 
         // Exit gracefully
@@ -352,8 +352,8 @@ export class InstallationManager implements HasTelemetry {
     // Using requirements.txt again here ensures that uv installs the expected packages from the previous step (--dry-run)
     const callbacks = createProcessCallbacks(this.appWindow, { logStderrAsInfo: true });
     try {
-      await installation.virtualEnvironment.installComfyUIRequirements(callbacks);
-      await installation.virtualEnvironment.installComfyUIManagerRequirements(callbacks);
+      await installation.virtualEnvironment.installHanzo StudioRequirements(callbacks);
+      await installation.virtualEnvironment.installHanzo StudioManagerRequirements(callbacks);
       await installation.validate();
     } catch (error) {
       log.error('Error auto-updating packages:', error);
