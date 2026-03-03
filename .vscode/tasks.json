@@ -14,7 +14,7 @@
     {
       "label": "Vite Watch - Main",
       "type": "shell",
-      "command": "yarn vite build --watch",
+      "command": "pnpm vite build --watch",
       "isBackground": true,
       "problemMatcher": {
         "pattern": {
@@ -31,7 +31,7 @@
     {
       "label": "Vite Watch - Preload",
       "type": "shell",
-      "command": "yarn vite build --watch --config vite.preload.config.ts",
+      "command": "pnpm vite build --watch --config vite.preload.config.ts",
       "linux": {
         "options": { "shell": { "args": ["-ci"] } }
       },

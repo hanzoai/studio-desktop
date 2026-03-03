@@ -89,13 +89,13 @@ await app.app.evaluate((electron, path) => {
 export COMFYUI_ENABLE_VOLATILE_TESTS=1
 
 # Run all integration tests
-yarn test:e2e
+pnpm test:e2e
 
 # Run specific test
-yarn playwright test tests/integration/install/installWizard.spec.ts
+pnpm playwright test tests/integration/install/installWizard.spec.ts
 
 # Update screenshots
-yarn test:e2e:update
+pnpm test:e2e:update
 ```
 
 ## Best Practices

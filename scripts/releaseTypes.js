@@ -12,7 +12,7 @@ try {
 
   // Run npm version patch and capture the output
   console.log('Bumping version...');
-  execSync('yarn version patch', { stdio: 'inherit' });
+  execSync('pnpm version patch', { stdio: 'inherit' });
 
   // Read the new version from package.json
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

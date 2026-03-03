@@ -19,9 +19,9 @@ execAndLog(`git clone ${managerRepo} assets/Hanzo Studio/custom_nodes/Hanzo Stud
 execAndLog(
   `cd assets/Hanzo Studio/custom_nodes/Hanzo Studio-Manager && git ${noWarning} checkout ${pkg.config.managerCommit} && cd ../../..`
 );
-execAndLog(`yarn run make:frontend`);
-execAndLog(`yarn run download:uv all`);
-execAndLog(`yarn run patch:core:frontend`);
+execAndLog(`pnpm run make:frontend`);
+execAndLog(`pnpm run download:uv all`);
+execAndLog(`pnpm run patch:core:frontend`);
 /**
  * Run a command and log the output.
  * @param {string} command The command to run.

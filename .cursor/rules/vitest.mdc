@@ -27,4 +27,4 @@ globs:
 
 ## Pre-commit checks (tests)
 
-- Run `yarn test:unit` before committing changes
+- Run `pnpm test:unit` before committing changes
